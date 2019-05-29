@@ -6,6 +6,10 @@ def get_rand(lower_val, upper_val) -> int:
 
 class map_obj:
 
+    def __init__(self, layout, map_dimensions):
+        self.layout = self.load_map()
+        self.map_dimensions = self.load_map_config()
+   
     def load_map_config(self,file='Map_Config.txt') -> list:
         map_dimensions = []
         with open(file, 'r') as myfile:
@@ -27,10 +31,6 @@ class map_obj:
             map_layout = myfile.read()
         return map_layout
     
-    def __init__(self):
-        self.layout = self.load_map()
-        self.map_dimensions = self.load_map_config()
-   
 game_map = map_obj()
 
 game_map.display_config()
