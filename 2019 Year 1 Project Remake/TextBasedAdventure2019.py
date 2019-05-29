@@ -5,33 +5,32 @@ def get_rand(lower_val, upper_val) -> int:
     return rand_val
 
 class map_obj:
-    layout = ''
-    map_length = 0
+
+    def load_map_config(self,file='Map_Config.txt') -> list:
+        map_dimensions = []
+        with open(file, 'r') as myfile:
+            for line in myfile:
+                if 'x:' in line:
+                    map_dimensions.append(line.replace('x:',''))
+                elif 'y:' in line:
+                    map_dimensions.append(line.replace('y:', ''))
+                else:
+                    map_dimensions.append(line.replace('default:', ''))
+            return map_dimensions
+
+    def display_config(self):
+        for item in self.map_dimensions:
+            print(item)
     
-    def get_length(self):
-        layout
-        length = 0
-        for char in self.layout:
-            if char == 'x':
-                length = length + 1
-            else:
-                break
-        return length
-
-    def display_length(self):
-        return self.map_length
-
-    def load_map(file='Map.txt') -> str:
+    def load_map(self,file='Map.txt') -> str:
         with open(file, 'r') as myfile:
             map_layout = myfile.read()
         return map_layout
     
     def __init__(self):
         self.layout = self.load_map()
-        self.map_length = self.get_length()
+        self.map_dimensions = self.load_map_config()
    
 game_map = map_obj()
 
-length = game_map.display_length()
-
-print(length)
+game_map.display_config()
