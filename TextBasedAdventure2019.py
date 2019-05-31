@@ -6,7 +6,7 @@ def get_rand(lower_val, upper_val) -> int:
 
 class map_obj:
 
-    def __init__(self, layout, map_dimensions):
+    def __init__(self):
         self.layout = self.load_map()
         self.map_dimensions = self.load_map_config()
    
