@@ -30,7 +30,27 @@ class map_obj:
         with open(file, 'r') as myfile:
             map_layout = myfile.read()
         return map_layout
-    
-game_map = map_obj()
 
-game_map.display_config()
+class Entity:
+    """Entity class containing coordinates and move function."""
+
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
+
+
+    def move(self, direction):
+        if direction == "up":
+            self.y += 1
+        elif direction == "right":
+            self.x += 1
+        elif direction == "down":
+            self.y -= 1
+        elif direction == "left":
+            self.x -= 1
+            
+
+    
+# game_map = map_obj()
+# 
+# game_map.display_config()
