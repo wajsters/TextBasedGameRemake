@@ -31,6 +31,7 @@ class map_obj:
             map_layout = myfile.read()
         return map_layout
 
+
 class Entity:
     """Entity class containing coordinates and move function."""
 
@@ -38,6 +39,8 @@ class Entity:
         self.x = x
         self.y = y
 
+    def coordinates(self):
+        return (self.x, self.y)
 
     def move(self, direction):
         if direction == "up":
