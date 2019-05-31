@@ -13,17 +13,15 @@ class Inventory:
         return self.name + ':' + message
 
     def pickup_item(self, item):
-        new_occupied = self.slots_occupied + item.slot
+        new_occupied = self.slots_occupied + item.slot_size
         if new_occupied > self.slot_count:
-            self.inventory_message(item.name + ' would exceed ' + self.name + '\'s maximum slot count')
+            self.inventory_message(f'{item.name} would exceed {self.name} \'s maximum slot count')
         else:
             self.item_collection.append(item)
-            self.slots_occupied = self.slots_occupied + item.slot
+            self.slots_occupied = self.slots_occupied + item.slot_size
             self.inventory_message(item.name + ' added to inventory')
 
     def drop_item(self, item):
         self.slots_occupied = self.slots_occupied - item.slot
         self.inventory_status()
-
-
 
