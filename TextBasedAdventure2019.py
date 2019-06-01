@@ -1,8 +1,10 @@
 import random
 
+
 def get_rand(lower_val, upper_val) -> int:
     rand_val = random.randint(lower_val, upper_val)
     return rand_val
+
 
 class map_obj:
 
@@ -32,28 +34,6 @@ class map_obj:
         return map_layout
 
 
-class Entity:
-    """Entity class containing coordinates and move function."""
+game_map = map_obj()
 
-    def __init__(self, x=0, y=0):
-        self.x = x
-        self.y = y
-
-    def coordinates(self):
-        return (self.x, self.y)
-
-    def move(self, direction):
-        if direction == "up":
-            self.y += 1
-        elif direction == "right":
-            self.x += 1
-        elif direction == "down":
-            self.y -= 1
-        elif direction == "left":
-            self.x -= 1
-            
-
-    
-# game_map = map_obj()
-# 
-# game_map.display_config()
+game_map.display_config()
