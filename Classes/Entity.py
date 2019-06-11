@@ -1,3 +1,6 @@
+from pynput import keyboard
+
+
 class Entity:
     """Entity class
     Arg1: x-coordinate of object (default = 0)
@@ -28,11 +31,40 @@ class Entity:
                 self.x -= 1
             else:
                 print("Warning: directional input only works for the four",
-                      "cardinal directions\n(up, right, down, or left).")
+                      "cardinal directions\n(up, right, down, or left).\n")
+
+            print(f"Entity position updated to {self.coordinates()}")
         except AttributeError:
             print("Error: the move() method in Entity class requires string",
-                  "input.")
+                  "input.\n")
 
 
-# Following block is for testing Entity class
-# Waj = Entity()
+
+# Following line is for testing Entity class
+Waj = Entity()
+
+
+# ToDo: Following block of code should be called on game start, and instead
+# of operating on Waj object, should operate on special player object.
+def on_press(key):
+    try:
+        if key.char == "w":
+            Waj.move("up")
+        elif key.char == "d":
+            Waj.move("right")
+        elif key.char == "s":
+            Waj.move("down")
+        elif key.char == "a":
+            Waj.move("left")
+
+    except AttributeError:
+        # Catches special characters, e.g. arrow keys, esc key, etc.
+        #print('special key {0} pressed'.format(key))
+
+        # Special characters currently have no function, so pass
+        pass
+
+# Collect events until released
+with keyboard.Listener(on_press=on_press) as listener:
+    listener.join()
+
