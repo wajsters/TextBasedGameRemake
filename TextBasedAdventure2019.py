@@ -5,8 +5,7 @@ def get_rand(lower_val, upper_val) -> int:
     rand_val = random.randint(lower_val, upper_val)
     return rand_val
 
-
-class MapObj:
+class map_obj:
 
     def __init__(self):
         self.layout = self.load_map()
@@ -33,7 +32,6 @@ class MapObj:
             map_layout = myfile.read()
         return map_layout
 
-
-game_map = MapObj()
+game_map = map_obj()
 
 game_map.display_config()
