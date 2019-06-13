@@ -1,7 +1,7 @@
 # Prints an ascii room from a .txt file to terminal.
 
 
-def create_room():
+def draw_room():
     with open("room_template.txt", "r") as f:
         # Create a list of rows of tiles in the room
         room = f.read().split("\n")
@@ -62,5 +62,5 @@ class Entity:
 Player = Entity()
 Player.move("down")
 Player.move("right")
-create_room()
+draw_room()
 
