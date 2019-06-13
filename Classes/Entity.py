@@ -19,14 +19,15 @@ class Entity:
     def coordinates(self):
         return (self.x, self.y)
 
+    # ToDo: Stop entities from moving beyond (1, 1) (top left corner of a room)
     def move(self, direction):
         try:
             if direction.lower() == "up":
-                self.y += 1
+                self.y -= 1
             elif direction.lower() == "right":
                 self.x += 1
             elif direction.lower() == "down":
-                self.y -= 1
+                self.y += 1
             elif direction.lower() == "left":
                 self.x -= 1
             else:
