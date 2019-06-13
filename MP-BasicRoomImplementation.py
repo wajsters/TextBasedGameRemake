@@ -6,12 +6,20 @@ def create_room():
         # Create a list of rows of tiles in the room
         room = f.read().split("\n")
 
-    # Insert player onto appropriate tile using their coordinates
+    # Get player position
+    # ToDo: Ensure that position is positive?
     player_coordinates = Player.coordinates()
-    if player_coordinates:
-        column = player_coordinates[0]
-        row = player_coordinates[1]
-        room = "".join((room[row][
+    column = player_coordinates[0]
+    row = player_coordinates[1]
+
+    # Insert player character "@" at relavent position
+    player_row = "".join((room[row][:column], "@", room[row][column+1:]))
+    del room[row]
+    room.insert(row, player_row)
+
+    # Create room string to print to terminal
+    room_string = "\n".join(room)
+    print(room_string)
 
 
 class Entity:
@@ -24,7 +32,7 @@ class Entity:
     
     """
 
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=1, y=1):
         self.x = x
         self.y = y
         print(f"Entity instantiated at position {self.coordinates()}")
@@ -35,11 +43,11 @@ class Entity:
     def move(self, direction):
         try:
             if direction.lower() == "up":
-                self.y += 1
+                self.y -= 1
             elif direction.lower() == "right":
                 self.x += 1
             elif direction.lower() == "down":
-                self.y -= 1
+                self.y += 1
             elif direction.lower() == "left":
                 self.x -= 1
             else:
@@ -50,4 +58,9 @@ class Entity:
         except AttributeError:
             print("Error: the move() method in Entity class requires string",
                   "input.\n")
+
+Player = Entity()
+Player.move("down")
+Player.move("right")
+create_room()
 
