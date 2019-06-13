@@ -1,11 +1,17 @@
 # Prints an ascii room from a .txt file to terminal.
 
 
-def read_room():
-    with open("room.txt", "r") as f:
-        room = f.read().split("\n")  # Create list of rows of tiles in the room
+def create_room():
+    with open("room_template.txt", "r") as f:
+        # Create a list of rows of tiles in the room
+        room = f.read().split("\n")
 
-
+    # Insert player onto appropriate tile using their coordinates
+    player_coordinates = Player.coordinates()
+    if player_coordinates:
+        column = player_coordinates[0]
+        row = player_coordinates[1]
+        room = "".join((room[row][
 
 
 class Entity:
